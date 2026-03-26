@@ -1,0 +1,12 @@
+jQuery(document).ready(function($){
+    setTimeout(function(){
+        console.log('teste')
+        $('img[srcset], picture source[srcset]').each(function() {
+            var srcset = $(this).attr('srcset');
+            if (srcset && srcset.indexOf('http://') !== -1) {
+                var newSrcset = srcset.replace(/http:\/\//g, 'https://');
+                $(this).attr('srcset', newSrcset);
+            }
+        });
+   }, 2000);
+})

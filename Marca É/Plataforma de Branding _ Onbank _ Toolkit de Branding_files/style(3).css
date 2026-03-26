@@ -1,0 +1,128 @@
+@charset "UTF-8";
+/*
+Theme Name: Toolkit Ana Couto
+Theme URI: http://www.anacouto.com.br
+Author: Gasoline Digital - @GasolineDigital
+Author URI: http://www.gasoline-digital.com
+Version: 2.0
+Text Domain: wp.toolkit.anacouto.theme
+*/
+
+/* CSS Document */
+
+/*
+.wrapper .block-content > p{display: none;}
+.pages .next_navigation{ border-top: 1px solid #e2e3e3; }	
+.pages .next_navigation h1 a{ margin-right: 40px; -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;}
+.pages .next_navigation h1 a:after{ position: absolute; right: 10px; margin: 0px; top: 6px;  -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; }
+.pages .next_navigation h1 a:hover:after{right: 0px;}
+*/
+
+
+.wrapper .subpage{ margin-bottom: 70px; }
+
+
+/* BLOCK : BOX COLOR VARIATIONS */
+.box-color .col-color > span{ font-size: 0.875em; }
+.box-color .col-color ul{ display: block; }
+.box-color .col-color ul:hover{background:transparent !important;}
+.box-color .col-color ul:hover li{ display: block; opacity: 1;}
+.box-color .col-color ul{ width: 100%; position: relative; }
+.box-color .col-color ul li{ height: 37px; line-height: 32px; font-weight: normal;  font-size: 1em; text-transform: uppercase; font-family:  'Din Black','Din', 'Faustina', Arial, sans-serif; border-bottom: 1px solid rgba(255,255,255,0.8);  -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; cursor:pointer; opacity:1;}
+@media screen and (min-width: 1200px) {
+	.box-color .col-color ul li{ opacity: 0;}
+}
+
+.box-color .col-color ul li span{ display: block; padding-left: 0; margin-left: 50%; transform: translateX(calc(-27% + -15px));}
+.box-color .col-color ul li i{margin-right: 10px;}
+.box-color .col-color ul li .text-on{ display: block; }
+.box-color .col-color ul li .text-active{ display: none; font-family: 'Din'; line-height: 37px; }
+.box-color .col-color ul li:last-child{ border-bottom: 0px; }
+.box-color .col-color ul li:hover{ opacity: 0.75; }
+.box-color .col-color ul li:active, 
+	.box-color .col-color ul li.active{ font-family: 'Din'; line-height: 37px; opacity: 0.8; }
+
+.box-color .col-color ul li:active .text-active, 
+	.box-color .col-color ul li.active .text-active{ display: block; }
+
+.box-color .col-color ul li:active .text-on, 
+	.box-color .col-color ul li.active .text-on{display: none;}
+
+
+.box-brand{position: relative;}
+.box-brand .brand-wrapper{margin-bottom: 15px;}
+.box-brand .brand-wrapper{width: 100%; min-height: 220px; position: relative;}
+.box-brand .brand-wrapper img{position: relative; width: 100%; height: auto; min-height: 220px; }
+.box-brand .brand-wrapper .brand-hover{ position: absolute; width: 100%; height: 100%; cursor: pointer; background: rgba(0,0,0,0.65); color: #fff; opacity: 0;  -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; top: 0px; left: 0px; z-index: 100;}
+.box-brand .brand-wrapper .brand-hover i{display: block; position: relative; width: 100%; text-align: center; font-size: 4.7em; top: 50%; transform: translate(0,-50%); }
+.box-brand .brand-wrapper .brand-hover span{display: block; width: 100%; text-align: center; font-family: 'Din Black'; font-style: 1em; top: 50%; transform: translate(0px, -35px);  position: relative;}
+.box-brand .brand-wrapper:hover .brand-hover{opacity: 1;}
+
+@media screen and (min-width: 1024px) {	
+	.box-brand .button-default{ position: absolute; right: 40px; top: 52px; }
+}
+
+
+.box-font{position: relative; font-size: 1.125em;}
+.box-font a.button-default.without-border{border:0px !important; position: relative; top: initial; right: initial;}
+.box-font .preview-font, .box-font .desc-font {padding-top: 15px; padding-bottom: 15px;}
+.box-font > .row{border-bottom: 1px solid #fff;}
+.box-font > .row:last-child{ border-bottom:0px; }
+@media screen and (min-width: 1024px) {	
+	.box-font .button-default{ position: absolute; right: 40px; top: 52px; }
+}
+
+body header .sr-only{
+	left: 18px;
+	margin-left: 0px; 
+}
+
+
+
+.fl-builder-content .fl-module-button.fl-module-button-default a.fl-button, .fl-builder-content .fl-module-button.fl-module-button-regular a.fl-button{	
+  height: 40px;
+  padding: 10px;
+  font-family: 'Din';
+  font-weight: 900;
+  font-size: 0.875em; 
+  line-height: 1.5em;
+  border-radius: 0;
+  padding-left: 25px;
+  padding-right: 25px;  
+}
+
+
+.fl-builder-content .fl-module-button.fl-module-button-default a.fl-button span, .fl-builder-content .fl-module-button.fl-module-button-regular a.fl-button span{
+	color: inherit;
+}
+
+.fl-builder-content .fl-module-button.fl-module-button-default a.fl-button:before, .fl-builder-content .fl-module-button.fl-module-button-regular a.fl-button:before {
+    content: "\e907";
+    font-family: 'toolkit-icons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-right: 7px;
+}
+
+
+.tab-loading{
+    position: fixed;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 100px;
+    width: calc(100% - 220px);    
+    display: none;
+}
+
+
+@media screen and (max-width: 600px){
+#wpadminbar {
+    position: fixed;
+}
+}

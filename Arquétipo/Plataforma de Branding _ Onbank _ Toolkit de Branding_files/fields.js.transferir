@@ -1,0 +1,184 @@
+if(typeof jQuery !== 'undefined'){
+
+	(function($){
+		CustomFieldBuilder = {
+	   		_init: function()
+	        {
+				/* Download Fields */
+				$('body').delegate('.fl-download-field .fl-download-select', 'click', CustomFieldBuilder._selectSingleDownload);
+				$('body').delegate('.fl-download-field .fl-download-edit', 'click', CustomFieldBuilder._selectSingleDownload);
+				$('body').delegate('.fl-download-field .fl-download-replace', 'click', CustomFieldBuilder._selectSingleDownload);
+				$('body').delegate('.fl-download-field .fl-download-remove', 'click', CustomFieldBuilder._singleDownloadRemoved);
+	        },		
+
+			/**
+			 * An instance of wp.media used to select a download file.
+			 *
+			 * @since 1.0
+			 * @access private
+			 * @property {Object} _singleDownloadSelector
+			 */
+			_singleDownloadSelector        : null,
+
+
+			/**
+			 * @since 1.10.8
+			 * @access private
+			 * @method _wpmedia_reset_errors
+			 */
+			_wpmedia_reset_errors: function() {
+				$('.upload-error').remove()
+				$('.media-uploader-status' ).removeClass( 'errors' ).hide()
+			},
+
+			/* Single Download Fields
+			----------------------------------------------------------*/
+
+			/**
+			 * Initializes download fields for a settings form.
+			 *
+			 * @since 2.2
+			 * @access private
+			 * @method _initDownloadFields
+			 */
+			_initDownloadFields: function()
+			{
+				var selects = $( '.fl-builder-settings:visible' ).find( '.fl-download-field select' );
+			},
+
+			/**
+			 * Initializes the single download selector.
+			 *
+			 * @since 1.8.6
+			 * @access private
+			 * @method _initSingleDownloadSelector
+			 */
+			_initSingleDownloadSelector: function()
+			{
+				if(CustomFieldBuilder._singleDownloadSelector === null) {
+					CustomFieldBuilder._singleDownloadSelector = wp.media({
+						title: 'Select Download File',
+						button: { text: 'Select File' },
+						library : { type : 'application/zip' },
+						multiple: false
+					});
+					CustomFieldBuilder._singleDownloadSelector.on( 'open', CustomFieldBuilder._wpmedia_reset_errors );
+				}
+			},
+
+			/**
+			 * Shows the single download selector.
+			 *
+			 * @since 1.0
+			 * @access private
+			 * @method _selectSingleDownload
+			 */
+			_selectSingleDownload: function()
+			{
+				CustomFieldBuilder._initSingleDownloadSelector();
+				CustomFieldBuilder._singleDownloadSelector.once('open', $.proxy(CustomFieldBuilder._singleDownloadOpened, this));
+				CustomFieldBuilder._singleDownloadSelector.once('select', $.proxy(CustomFieldBuilder._singleDownloadSelected, this));
+				CustomFieldBuilder._singleDownloadSelector.open();
+			},
+
+			/**
+			 * Callback for when the single download selector is shown.
+			 *
+			 * @since 1.0
+			 * @access private
+			 * @method _singleDownloadOpened
+			 */
+			_singleDownloadOpened: function()
+			{
+				var selection   = CustomFieldBuilder._singleDownloadSelector.state().get('selection'),
+					wrap        = $(this).closest('.fl-download-field'),
+					downloadField  = wrap.find('input[type=hidden]'),
+					download       = downloadField.val(),
+					attachment  = null;
+
+				if($(this).hasClass('fl-download-replace')) {
+					selection.reset();
+					wrap.addClass('fl-download-empty');
+					downloadField.val('');
+				}
+				else if(download !== '') {
+					attachment = wp.media.attachment(download);
+					attachment.fetch();
+					selection.add(attachment ? [attachment] : []);
+				}
+				else {
+					selection.reset();
+				}
+			},
+
+			/**
+			 * Callback for when a single download is selected.
+			 *
+			 * @since 1.0
+			 * @access private
+			 * @method _singleDownloadSelected
+			 */
+			_singleDownloadSelected: function()
+			{
+				var download   = CustomFieldBuilder._singleDownloadSelector.state().get('selection').first().toJSON(),
+					wrap       = $(this).closest('.fl-download-field'),
+					downloadField = wrap.find('input[type=hidden]'),
+					preview    = wrap.find('.fl-download-preview-img a');
+
+				downloadField.val(download.id);
+				wrap.removeClass('fl-download-empty').removeClass('fl-download-no-attachment');
+				wrap.find('label.error').remove();
+				preview.attr('href',download.url);
+				preview.html(download.filename);
+				FLBuilderSettingsConfig.attachments[ download.id ] = download;
+			},
+
+			/**
+			 * Clears a download that has been selected in a single download field.
+			 *
+			 * @since 1.6.4.3
+			 * @access private
+			 * @method _singleDownloadRemoved
+			 */
+			_singleDownloadRemoved: function()
+			{
+				CustomFieldBuilder._initSingleDownloadSelector();
+
+				var state       = CustomFieldBuilder._singleDownloadSelector.state(),
+					selection   = 'undefined' != typeof state ? state.get('selection') : null,
+					wrap        = $(this).closest('.fl-download-field'),
+					downloadField  = wrap.find('input[type=hidden]')
+
+				if ( selection ) {
+					selection.reset();
+				}
+
+				wrap.addClass('fl-download-empty');
+				downloadField.val('');
+			},
+
+
+			/**
+			 * Returns the src URL for a download.
+			 *
+			 * @since 1.0
+			 * @access private
+			 * @method _getDownloadSrc
+			 * @param {Object} download A download data object.
+			 * @return {String} The src URL for a downlos.
+			 */
+			_getDownloadSrc: function(download)
+			{
+					return download.url;
+			},				
+			    
+		};
+
+		$(function(){
+	        CustomFieldBuilder._init();
+	    });	
+
+	})(jQuery);
+}  
+
+
