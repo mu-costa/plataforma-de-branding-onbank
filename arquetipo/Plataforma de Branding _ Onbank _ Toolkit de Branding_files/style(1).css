@@ -1,0 +1,80 @@
+@font-face {
+  font-family: 'toolkit-icons';
+  src:  url('fonts/toolkit-icons.eot?2vjiee');
+  src:  url('fonts/toolkit-icons.eot?2vjiee#iefix') format('embedded-opentype'),
+    url('fonts/toolkit-icons.ttf?2vjiee') format('truetype'),
+    url('fonts/toolkit-icons.woff?2vjiee') format('woff'),
+    url('fonts/toolkit-icons.svg?2vjiee#toolkit-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+i.toic, span.toic {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'toolkit-icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.toic-download:before {
+  content: "\e900";
+}
+.toic-dowload-circle:before {
+  content: "\e901";
+}
+.toic-stip-lines-menu:before {
+  content: "\e902";
+}
+.toic-down-circle:before {
+  content: "\e903";
+}
+.toic-search:before {
+  content: "\e904";
+}
+.toic-check:before {
+  content: "\e905";
+}
+.toic-paste:before {
+  content: "\e906";
+}
+.toic-down:before {
+  content: "\e907";
+}
+.toic-up:before {
+  content: "\e908";
+}
+.toic-right:before {
+  content: "\e909";
+}
+.toic-left:before {
+  content: "\e90a";
+}
+.toic-chevron-down:before {
+  content: "\e90b";
+}
+.toic-chevron-up:before {
+  content: "\e90c";
+}
+.toic-chevron-right:before {
+  content: "\e90c";
+  display: inline-block;
+  transform: rotate(90deg);
+}
+
+.toic-chevron-left:before {
+  content: "\e90b";
+  display: inline-block;
+  transform: rotate(90deg);
+}
+
+
+

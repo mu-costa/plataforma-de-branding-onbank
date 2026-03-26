@@ -1,0 +1,38 @@
+
+/* Download Fields */
+.fl-download-field .fl-download-preview {
+	display: flex;
+}
+.fl-download-field .fl-download-select,
+.fl-download-field.fl-download-empty .fl-download-preview {
+	display: none;
+}
+.fl-download-field.fl-download-empty .fl-download-select {
+	display: block;
+}
+.fl-download-field .fl-download-preview-img {
+	line-height: 0;
+	margin: 5px 0;
+}
+
+.fl-download-field .fl-download-preview-filename {
+	display: none;
+	font-size: 13px;
+	font-weight: bold;
+	margin: 5px 0 9px 11px;
+}
+.fl-download-field.fl-download-no-attachment .fl-download-preview-filename {
+	display: inline-block;
+    word-break: break-all;
+}
+.fl-download-field .fl-download-edit {
+	margin: 0 0 0 11px;
+}
+.fl-download-field.fl-download-no-attachment .fl-download-edit {
+	display: none;
+}
+.fl-download-field .fl-download-replace,
+.fl-download-field .fl-download-remove {
+	margin: 0 0 0 8px;
+}
+
